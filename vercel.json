@@ -1,28 +1,33 @@
 {
   "version": 2,
-  "buildCommand": "cd frontend && npm install && npm run build",
-  "installCommand": "npm install",
-  "outputDirectory": "frontend/build",
-  "rewrites": [
+  "builds": [
     {
-      "source": "/api/healthz",
-      "destination": "/api/healthz.js"
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
     },
     {
-      "source": "/api/pastes",
-      "destination": "/api/pastes/index.js"
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
     },
     {
-      "source": "/api/pastes/:id",
-      "destination": "/api/pastes/[id].js"
+      "src": "/p/([^/]+)",
+      "dest": "/api/p/[id].js"
     },
     {
-      "source": "/p/:id",
-      "destination": "/api/p/[id].js"
+      "handle": "filesystem"
     },
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/(.*)",
+      "dest": "/frontend/build/$1"
     }
   ]
 }
