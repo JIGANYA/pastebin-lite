@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const API_BASE = "http://localhost:3000"
+const API_BASE = ""
 
 function App() {
   const [content, setContent] = useState("")
@@ -83,7 +83,7 @@ function App() {
       {error && <p style={{ color: "red" }}>{error}</p>}
       {result && (
         <p>
-          Shareable link: <a href={result}>{result}</a>
+          Shareable link: <a href={result} target="_blank" rel="noopener noreferrer">{result}</a>
         </p>
       )}
     </div>

@@ -26,8 +26,12 @@ export default async function handler(req, res) {
     views: 0
   })
 
+  // Use the request origin/host to generate URL
+  const protocol = req.headers['x-forwarded-proto'] || 'https'
+  const host = req.headers['x-forwarded-host'] || req.headers.host
+  const baseUrl = `${protocol}://${host}`
   res.status(201).json({
     id,
-    url: `${req.headers.origin}/p/${id}`
+    url: `${baseUrl}/p/${id}`
   })
 }
