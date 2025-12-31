@@ -25,11 +25,11 @@
     },
     {
       "src": "/api/pastes/([^/]+)",
-      "dest": "/api/pastes/[id].js"
+      "dest": "/api/pastes/[id].js?id=$1"
     },
     {
       "src": "/p/([^/]+)",
-      "dest": "/api/p/[id].js"
+      "dest": "/api/p/[id].js?id=$1"
     },
     {
       "handle": "filesystem"
